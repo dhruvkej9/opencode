@@ -55,6 +55,7 @@ export const PlanExitTool = Tool.define(
             id: MessageID.ascending(),
             sessionID: ctx.sessionID,
             role: "user",
+            initiator: "agent",
             time: { created: Date.now() },
             agent: "build",
             model,

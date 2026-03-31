@@ -550,6 +550,9 @@ describe("session.compaction.create", () => {
         const msgs = yield* ssn.messages({ sessionID: info.id })
         expect(msgs).toHaveLength(1)
         expect(msgs[0].info.role).toBe("user")
+        if (msgs[0].info.role === "user") {
+          expect(msgs[0].info.initiator).toBe("agent")
+        }
         expect(msgs[0].parts).toHaveLength(1)
         expect(msgs[0].parts[0]).toMatchObject({
           type: "compaction",
@@ -894,6 +897,9 @@ describe("session.compaction.process", () => {
 
           expect(result).toBe("continue")
           expect(last?.info.role).toBe("user")
+          if (last?.info.role === "user") {
+            expect(last.info.initiator).toBe("agent")
+          }
           expect(last?.parts[0]).toMatchObject({
             type: "text",
             synthetic: true,

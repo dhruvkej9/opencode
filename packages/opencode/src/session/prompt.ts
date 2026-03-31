@@ -700,6 +700,7 @@ NOTE: At any point in time through this workflow you should feel free to ask the
         id: MessageID.ascending(),
         sessionID,
         role: "user",
+        initiator: "agent",
         time: { created: Date.now() },
         agent: lastUser.agent,
         model: lastUser.model,

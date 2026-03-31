@@ -375,6 +375,7 @@ export const layer: Layer.Layer<
           const replayMsg = yield* session.updateMessage({
             id: MessageID.ascending(),
             role: "user",
+            initiator: "agent",
             sessionID: input.sessionID,
             time: { created: Date.now() },
             agent: original.agent,
@@ -421,6 +422,7 @@ export const layer: Layer.Layer<
             const continueMsg = yield* session.updateMessage({
               id: MessageID.ascending(),
               role: "user",
+              initiator: "agent",
               sessionID: input.sessionID,
               time: { created: Date.now() },
               agent: userMessage.agent,
@@ -466,6 +468,7 @@ export const layer: Layer.Layer<
       const msg = yield* session.updateMessage({
         id: MessageID.ascending(),
         role: "user",
+        initiator: "agent",
         model: input.model,
         sessionID: input.sessionID,
         agent: input.agent,
