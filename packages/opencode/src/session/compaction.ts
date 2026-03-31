@@ -280,6 +280,7 @@ When constructing the summary, try to stick to this template:
             const replayMsg = yield* session.updateMessage({
               id: MessageID.ascending(),
               role: "user",
+              initiator: "agent",
               sessionID: input.sessionID,
               time: { created: Date.now() },
               agent: original.agent,
@@ -308,6 +309,7 @@ When constructing the summary, try to stick to this template:
             const continueMsg = yield* session.updateMessage({
               id: MessageID.ascending(),
               role: "user",
+              initiator: "agent",
               sessionID: input.sessionID,
               time: { created: Date.now() },
               agent: userMessage.agent,
@@ -348,6 +350,7 @@ When constructing the summary, try to stick to this template:
         const msg = yield* session.updateMessage({
           id: MessageID.ascending(),
           role: "user",
+          initiator: "agent",
           model: input.model,
           sessionID: input.sessionID,
           agent: input.agent,

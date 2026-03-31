@@ -356,6 +356,7 @@ export namespace MessageV2 {
 
   export const User = Base.extend({
     role: z.literal("user"),
+    initiator: z.enum(["user", "agent"]).optional(),
     time: z.object({
       created: z.number(),
     }),
