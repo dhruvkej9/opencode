@@ -100,7 +100,11 @@ function wrap<Parameters extends z.ZodType, Result extends Metadata>(
             return result
           }
           const agent = yield* agents.get(ctx.agent)
-          const truncated = yield* truncate.output(result.output, {}, agent)
+          const truncated = yield* truncate.output(
+            result.output,
+            Truncate.optionsForModel(ctx.extra?.model as { api?: { id?: string } } | undefined),
+            agent,
+          )
           return {
             ...result,
             output: truncated.content,

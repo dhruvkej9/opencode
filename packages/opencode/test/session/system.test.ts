@@ -11,6 +11,20 @@ function load<A>(dir: string, fn: (svc: Agent.Interface) => Effect.Effect<A>) {
 }
 
 describe("session.system", () => {
+  test("codex provider prompt matches Codex CLI shell-first prompt", async () => {
+    const prompt = SystemPrompt.provider({
+      providerID: "openai",
+      api: {
+        id: "gpt-5.2-codex",
+      },
+    } as any)
+
+    expect(prompt).toHaveLength(1)
+    expect(prompt[0]).toContain("You are Codex, based on GPT-5.")
+    expect(prompt[0]).toContain("prefer using `rg` or `rg --files`")
+    expect(prompt[0]).not.toContain("Prefer specialized tools over shell")
+  })
+
   test("skills output is sorted by name and stable across calls", async () => {
     await using tmp = await tmpdir({
       git: true,

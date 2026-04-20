@@ -491,7 +491,11 @@ NOTE: At any point in time through this workflow you should feel free to ask the
                 }
               }
 
-              const truncated = yield* truncate.output(textParts.join("\n\n"), {}, input.agent)
+              const truncated = yield* truncate.output(
+                textParts.join("\n\n"),
+                Truncate.optionsForModel(input.model),
+                input.agent,
+              )
               const metadata = {
                 ...result.metadata,
                 truncated: truncated.truncated,
